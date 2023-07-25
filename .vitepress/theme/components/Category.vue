@@ -24,10 +24,18 @@ import { shallowRef, ref } from "vue";
 import { getHeaders } from "../utils";
 
 const { frontmatter, theme } = useData();
+console.log("category.frontmatter",frontmatter)
+console.log("category.theme",theme)
 const headers = shallowRef<any>([]);
+console.log("category.headers",headers)
 const showIndent = ref(false);
+console.log("category.showIndent",showIndent)
 onContentUpdated(() => {
+  console.log("oncontenUpdated被调用了")
+  console.log("frontmatter.value.outline",frontmatter.value.outline)
+  console.log("theme.value.outline",theme.value.outline)
   headers.value = getHeaders(frontmatter.value.outline ?? theme.value.outline);
+  console.log("headers.value",headers.value)
   showIndent.value = headers.value.some((header) => {
     return header.level === 2;
   });

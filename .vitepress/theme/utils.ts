@@ -12,7 +12,10 @@ export function initTags(post: Post[]) {
   const data: any = {};
   for (let i = 0; i < post.length; i++) {
     const element = post[i];
+    console.log("element",element)
     const tags = element.frontMatter.tags;
+    console.log("tags",tags)
+    console.log("Array.isArray(tags)",Array.isArray(tags))
     // tags是数组，需要tags按照数组语法的格式书写
     if (Array.isArray(tags)) {
       tags.forEach((item) => {
@@ -20,9 +23,11 @@ export function initTags(post: Post[]) {
           data[item] = [];
         }
         data[item].push(element);
+        console.log("data[item]",data[item])
       });
     }
   }
+  console.log("data新",data)
   return data;
 }
 
@@ -44,10 +49,12 @@ export function useYearSort(post: Post[]) {
       }
     }
   }
+  console.log("funtiondata",data)
   return data;
 }
 
 export function getHeaders(range: any) {
+  console.log("utils下的数组",[...document.querySelectorAll(".VPDoc h2,h3,h4,h5,h6")])
   const headers = [...document.querySelectorAll(".VPDoc h2,h3,h4,h5,h6")]
     .filter((el) => el.id && el.hasChildNodes())
     .map((el) => {
@@ -58,6 +65,8 @@ export function getHeaders(range: any) {
         level,
       };
     });
+    
+    console.log("utils下的header",headers)
 
   // return resolveHeaders(headers, range);
   return headers;

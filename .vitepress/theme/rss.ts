@@ -65,6 +65,7 @@ async function generateRSS() {
   ).filter(Boolean);
 
   posts.sort((a, b) => +new Date(b.date) - +new Date(a.date));
+  console.log("rss下的posts",posts)
   return posts;
 }
 

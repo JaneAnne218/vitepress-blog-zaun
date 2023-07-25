@@ -18,6 +18,7 @@
       </a>
     </div>
   </div>
+  
 </template>
 
 <script lang="ts" setup>
@@ -26,7 +27,11 @@ import { computed } from "vue";
 import { useYearSort } from "../utils";
 
 const { theme } = useData();
+console.log("theme",theme)
 const data = computed(() => useYearSort(theme.value.posts));
+console.log("data",data)
+console.log("withbase",withBase)
+
 </script>
 
 <style scoped>

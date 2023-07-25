@@ -5,11 +5,12 @@
       <span
         @click="toggleTag(key)"
         v-for="(item, key) in data"
+        :key="key"
         class="tag"
         :style="getFontSize(data[key].length)"
         :class="{ activetag: selectTag === key }"
       >
-        {{ key }} <span class="tag-length">{{ data[key].length }}</span>
+        {{ key }} <span class="tag-length">{{ data[key].length }}></span>
       </span>
     </div>
 
@@ -54,13 +55,19 @@ import { initTags } from "../utils";
 
 const { theme } = useData();
 const data = computed(() => initTags(theme.value.posts));
+console.log("basehhh",withBase)
+console.log("theme",theme.value.posts)
+console.log("data你",data)
+console.log("data你的key",data.value.key)
 let selectTag = ref("");
 const toggleTag = (tag: string) => {
   selectTag.value = tag;
+  console.log("selectTag", selectTag.value)
 };
 // set font-size
 const getFontSize = (length: number) => {
   let size = length * 0.04 + 0.85;
+  console.log("fontSize", `${size}em`);
   return { fontSize: `${size}em` };
 };
 </script>

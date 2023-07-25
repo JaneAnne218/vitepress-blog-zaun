@@ -1,7 +1,7 @@
 import globby from "globby";
 import matter from "gray-matter";
 import fs from "fs-extra";
-import path from "path";
+// import path from "path";
 
 export async function getPosts() {
   let paths = await getPostMDFilePaths();
@@ -9,6 +9,7 @@ export async function getPosts() {
     paths.map(async (item) => {
       const content = await fs.readFile(item, "utf-8");
       const { data } = matter(content);
+      console.log("zhe里data",data)
       data.date = _convertDate(data.date);
       return {
         frontMatter: data,
@@ -16,12 +17,14 @@ export async function getPosts() {
       };
     })
   );
+  console.log("postsll",posts)
   posts.sort(_compareDate);
   return posts;
 }
 
 function _convertDate(date = new Date().toString()) {
   const json_date = new Date(date).toJSON();
+  console.log("json_date",json_date);
   return json_date.split("T")[0];
 }
 
@@ -33,6 +36,7 @@ async function getPostMDFilePaths() {
   let paths = await globby(["**.md"], {
     ignore: ["node_modules", "README.md"],
   });
+  console.log("path",paths)
   return paths.filter((item) => item.includes("posts/"));
 }
 
