@@ -29,7 +29,7 @@ import { useYearSort } from "../utils";
 const { theme } = useData();
 console.log("theme",theme)
 const data = computed(() => useYearSort(theme.value.posts));
-console.log("data",data)
+console.log("datahahah",data)
 console.log("withbase",withBase)
 
 </script>

@@ -36,7 +36,7 @@ async function getPostMDFilePaths() {
   let paths = await globby(["**.md"], {
     ignore: ["node_modules", "README.md"],
   });
-  console.log("path",paths)
+  console.log("path下",paths)
   return paths.filter((item) => item.includes("posts/"));
 }
 
